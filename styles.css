@@ -1,0 +1,100 @@
+
+/* ============== Shared Brand Styles (non-destructive) ============== */
+/* Animated topo background using a seamless SVG tile; gentle drift */
+:root{
+  --bg:#0b0f13;
+  --ink:#f3f8ff;
+  --muted:#c2d0e0;
+  --brand:#5eead4;
+  --brand2:#2ae5c2;
+  --line:rgba(255,255,255,.12);
+}
+html,body{background-color:var(--bg); color:var(--ink);}
+/* Topo tile (approximate to provided reference, no watermark) */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'>  <defs>    <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>      <stop offset='0%' stop-color='%232ae5c2'/>      <stop offset='100%' stop-color='%235eead4'/>    </linearGradient>  </defs>  <g fill='none' stroke='url(%23g)' stroke-opacity='.12' stroke-width='2'>    <path d='M5,60 C45,30 85,90 125,60 C165,30 205,90 245,60 C285,30 315,90 315,90'/>    <path d='M0,160 C50,120 90,180 140,150 C190,120 230,180 280,150 C310,130 340,170 360,160' stroke-opacity='.10'/>    <path d='M-20,250 C40,210 120,290 180,240 C220,210 280,280 340,240' stroke-opacity='.08'/>    <path d='M40,5 C70,25 60,45 90,65 C120,85 110,105 140,125' stroke-opacity='.08'/>  </g></svg>");
+  background-size: 480px 480px;
+  background-repeat: repeat;
+  opacity:.35;           /* visible but not loud */
+  animation: topoDrift 120s linear infinite;
+  pointer-events:none;
+  z-index:0;
+}
+@keyframes topoDrift{
+  0% { background-position: 0 0; }
+  50%{ background-position: -240px -120px; }
+  100%{ background-position: -480px -240px; }
+}
+/* Keep page content above the background texture */
+header, main, footer, .container, .grid, .card{ position:relative; z-index:1; }
+
+/* Small helper to avoid overlap for any fixed cameos if present */
+.pin-buddy{ z-index:1; }
+
+/* Respect existing typography/colors. This file is additive. */
+
+
+/* === Core UI (MapOps) === */
+:root{
+  --card:#111820;
+  --brand-ink:#042b26;
+  --radius:16px;
+}
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased;}
+a{color:var(--brand); text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Layout */
+.container{width:min(1180px,92vw); margin-inline:auto}
+.section{padding:60px 0; position:relative}
+.grid{display:grid; gap:24px}
+
+/* Cards */
+.card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+      padding:22px; box-shadow:0 12px 28px rgba(0,0,0,.35)}
+.card h3{margin:0 0 8px; color:var(--brand)}
+.muted{color:#c2d0e0}
+
+/* Titles */
+.title{font-size:clamp(34px,5vw,56px); line-height:1.12; margin:0 0 10px;
+       background:linear-gradient(90deg,#30ffd1,#5eead4); -webkit-background-clip:text; -webkit-text-fill-color:transparent}
+.subtitle{font-size:clamp(18px,2.2vw,22px); color:#eaf6ff; opacity:.95; margin:0 0 14px}
+.section-heading{color:var(--brand); text-shadow:0 0 8px rgba(94,234,212,.3); margin:0 0 8px; font-size:26px}
+
+/* Buttons */
+.btn{display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,var(--brand2),var(--brand));
+     color:var(--brand-ink); padding:10px 16px; border-radius:12px; font-weight:700; border:1px solid rgba(0,0,0,.08);
+     box-shadow:0 6px 18px rgba(42,229,194,.3); transition:transform .2s ease, background .3s ease; text-decoration:none}
+.btn:hover{transform:translateY(-2px); background:linear-gradient(135deg,#30ffd1,var(--brand))}
+.btn.ghost{background:transparent; color:var(--ink); border:1px solid var(--brand2)}
+.btn.ghost:hover{color:var(--brand2); border-color:var(--brand)}
+
+/* Utility grids used on How/Playbook */
+.cards{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+
+/* Header/footer spacing safety (borrowed vibes) */
+header{position:sticky; top:0; z-index:5; background:rgba(10,13,17,.8); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;color:var(--brand);font-size:28px}
+.nav-links{display:flex; gap:18px; flex-wrap:wrap}
+
+/* Responsive */
+@media (max-width:900px){
+  .nav-links{gap:12px}
+  .section{padding:46px 0}
+}
+
+
+/* === Brand logo (pulsing dot) === */
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;color:var(--brand);font-size:28px}
+.logo-dot{width:12px;height:12px;border-radius:50%;background:var(--brand2);
+  box-shadow:0 0 0 6px rgba(42,229,194,.22);animation:logoPulse 3.2s ease-in-out infinite}
+@keyframes logoPulse{
+  0%{box-shadow:0 0 0 6px rgba(42,229,194,.18);transform:scale(1)}
+  50%{box-shadow:0 0 0 10px rgba(42,229,194,.08);transform:scale(1.03)}
+  100%{box-shadow:0 0 0 6px rgba(42,229,194,.18);transform:scale(1)}
+}
