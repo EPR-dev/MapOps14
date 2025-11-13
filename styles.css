@@ -98,3 +98,36 @@ nav{display:flex; align-items:center; justify-content:space-between; padding:14p
   50%{box-shadow:0 0 0 10px rgba(42,229,194,.08);transform:scale(1.03)}
   100%{box-shadow:0 0 0 6px rgba(42,229,194,.18);transform:scale(1)}
 }
+
+
+/* Enhanced header nav hover */
+header nav a {
+  transition: color 0.18s ease, text-shadow 0.18s ease;
+}
+
+header nav a:hover {
+  color: #5FF2D9;
+  text-shadow: 0 0 14px rgba(95, 242, 217, 0.65);
+}
+
+/* Gradient section headings for a premium MapOps feel */
+.section-heading {
+  background: linear-gradient(90deg, #5FF2D9 0%, #2AD3B5 50%, #0EA5A3 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Subtle shadow behind hero title for readability over maps */
+.hero-title {
+  text-shadow: 0 0 18px rgba(0, 0, 0, 0.85);
+}
+
+/* Slight emphasis on pricing tier headings and prices */
+.pricing-premium .p-card h3 {
+  color: #5FF2D9;
+}
+.pricing-premium .p-card .price {
+  color: #E5F9FF;
+  font-weight: 600;
+}
