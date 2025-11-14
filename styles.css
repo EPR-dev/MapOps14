@@ -99,6 +99,13 @@ nav{display:flex; align-items:center; justify-content:space-between; padding:14p
   100%{box-shadow:0 0 0 6px rgba(42,229,194,.18);transform:scale(1)}
 }
 
+@media (max-width:700px){
+  nav{flex-wrap:wrap; row-gap:8px;}
+  .nav-links{justify-content:flex-start;font-size:13px;}
+  .hero{padding:56px 0 32px;}
+  .hero .wrap{gap:28px;}
+}
+
 /* Contact layout */
 .contact-grid {
   grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
@@ -143,15 +150,6 @@ nav{display:flex; align-items:center; justify-content:space-between; padding:14p
 .contact-side a:hover {
   text-decoration: underline;
 }
-@media (max-width: 900px) {
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-  .contact-side {
-    max-height: none;
-    margin-top: 16px;
-  }
-}
 
 /* Enhanced header nav hover */
 header nav a {
@@ -162,7 +160,7 @@ header nav a:hover {
   text-shadow: 0 0 14px rgba(95, 242, 217, 0.65);
 }
 
-/* Gradient section headings */
+/* Gradient section headings on desktop */
 .section-heading {
   background: linear-gradient(90deg, #5FF2D9 0%, #2AD3B5 50%, #0EA5A3 100%);
   -webkit-background-clip: text;
@@ -182,4 +180,94 @@ header nav a:hover {
 .pricing-premium .p-card .price {
   color: #E5F9FF;
   font-weight: 600;
+}
+
+/* ============================
+   MOBILE CLEANUP (<= 768px)
+   ============================ */
+@media (max-width: 768px) {
+
+  /* HEADER: stack logo + nav instead of cramming in one line */
+  header .wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding-inline: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  header .brand,
+  header .logo {
+    margin-bottom: 2px;
+  }
+
+  header nav ul {
+    flex-wrap: wrap;
+    row-gap: 4px;
+    column-gap: 12px;
+    justify-content: flex-start;
+  }
+
+  header nav a {
+    font-size: 13px;
+  }
+
+  /* SECTION SPACING + HEADERS */
+  .section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .section-heading {
+    background: none;        /* kill gradient on small screens */
+    color: #E5F9FF;
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .section-heading + .muted {
+    margin-top: 4px;
+    margin-bottom: 18px;
+    font-size: 14px;
+  }
+
+  /* HERO */
+  .hero {
+    padding-top: 80px;
+    padding-bottom: 40px;
+  }
+
+  .hero-title {
+    font-size: 30px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .hero p {
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+
+  /* FORCE SINGLE-COLUMN GRIDS ON MOBILE */
+  #case-study .grid,
+  #fit .grid,
+  #pricing .grid,
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px;
+  }
+
+  /* Case study outcome card drops under problem text */
+  #case-study aside.card {
+    margin-top: 8px;
+  }
+
+  /* Contact: questions box under the form */
+  .contact-side {
+    max-height: none;
+    margin-top: 4px;
+  }
 }

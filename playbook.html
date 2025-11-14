@@ -1,78 +1,397 @@
-<!DOCTYPE html><html lang="en"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" />
+<meta content="width=device-width,initial-scale=1" name="viewport" />
 <title>Playbook — MapOps</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta content="The MapOps sales mapping playbook: how to turn territory-intelligent maps into concrete, repeatable revenue motions." name="description" />
+<link href="https://fonts.googleapis.com" rel="preconnect" />
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css"/>
-</head><body><header><div class="container"><nav aria-label="Secondary navigation"><div class="logo">
+<style>
+    :root{
+      --bg:#0b0f13; --card:#111820; --ink:#f3f8ff; --muted:#c2d0e0;
+      --brand:#5eead4; --brand2:#2ae5c2; --brand-accent:#30ffd1;
+      --brand-ink:#042b26; --ring:rgba(94,234,212,.55); --line:rgba(255,255,255,.12);
+      --radius:16px; --shadow:0 12px 28px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(1400px 900px at 80% -200px, rgba(42,229,194,.18), transparent 60%),
+        radial-gradient(800px 600px at 10% 100%, rgba(94,234,212,.15), transparent 70%),
+        linear-gradient(180deg,#0a0d11 0%,#0b0f13 100%);
+      color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased;
+    }
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{width:min(1180px, 92vw);margin-inline:auto}
+    .grid{display:grid;gap:24px}
+    header{position:sticky;top:0;background:rgba(5,15,25,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--brand2);z-index:40}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;color:var(--brand);font-size:22px;position:relative;}
+    .logo-dot{width:12px;height:12px;border-radius:50%;background:var(--brand2);box-shadow:0 0 0 6px rgba(42,229,194,.2);animation:pulseGlow 3.2s ease-in-out infinite}
+    .logo::before{content:"";position:absolute;inset:-6px -14px;background:radial-gradient(circle at 0 50%,rgba(94,234,212,.18),transparent 65%);z-index:-1;border-radius:999px;filter:blur(0.5px)}
+    .nav-links{display:flex;gap:18px;flex-wrap:wrap;font-size:14px}
+    .nav-links a{color:#cbd5f5;position:relative;text-decoration:none}
+    .nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:linear-gradient(90deg,var(--brand-accent),var(--brand2));transition:width .2s ease;opacity:.9}
+    .nav-links a:hover::after{width:100%}
+    .nav-links a[aria-current="page"]{color:#e5f9ff;font-weight:600}
+    .muted{color:#d2deea}
+    .btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0ff,#66ffe0);color:#002a24;padding:12px 18px;border-radius:14px;font-weight:800;border:1px solid rgba(0,0,0,.08);box-shadow:0 6px 22px rgba(0,255,200,.45);transition:transform .2s ease,background .3s ease;text-decoration:none;font-size:15px}
+    .btn:hover{transform:translateY(-2px);background:linear-gradient(135deg,var(--brand-accent),var(--brand))}
+    .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--brand2)}
+    .btn.ghost:hover{color:var(--brand2);border-color:var(--brand)}
+    @keyframes pulseGlow{
+      0%{box-shadow:0 0 0 6px rgba(42,229,194,.18)}
+      50%{box-shadow:0 0 0 10px rgba(42,229,194,.08)}
+      100%{box-shadow:0 0 0 6px rgba(42,229,194,.18)}
+    }
+    .section{padding:60px 0;position:relative}
+    .section::before{
+      content:"";position:absolute;inset:0;z-index:-1;opacity:.08;
+      background:radial-gradient(circle at 80% 10%,var(--brand2),transparent 70%);
+    }
+    .title{font-size:clamp(34px,5vw,56px);line-height:1.12;margin:0 0 10px;background:linear-gradient(90deg,var(--brand-accent),var(--brand));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .subtitle{font-size:clamp(18px,2.2vw,22px);color:#eaf6ff;opacity:.95;margin:0 0 14px}
+    h2.section-heading{color:var(--brand);text-shadow:0 0 8px rgba(94,234,212,.3);margin:0 0 8px;font-size:26px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);transition:transform .2s ease,border-color .2s ease}
+    .card:hover{transform:translateY(-3px);border-color:var(--brand-accent)}
+    .cards{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    footer{border-top:1px solid var(--line);padding:22px 0 34px;margin-top:20px}
+    .footer-row{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;color:#9fb3ce;flex-wrap:wrap}
+
+    .mobile-cta{display:none}
+    @media (max-width:700px){
+      body{padding-bottom:76px;}
+      nav{flex-wrap:wrap;row-gap:8px;}
+      .nav-links{justify-content:flex-start;font-size:13px;}
+      .title{font-size:clamp(28px,7vw,36px);}
+      .subtitle{font-size:15px;}
+      .section{padding:42px 0;}
+      .cards{grid-template-columns:1fr;}
+
+      .mobile-cta{
+        display:block;
+        position:fixed;
+        bottom:14px;
+        left:50%;
+        transform:translateX(-50%);
+        z-index:60;
+        width:100%;
+        max-width:460px;
+        padding:0 16px;
+      }
+      .mobile-cta .btn{
+        width:100%;
+        justify-content:center;
+        font-size:15px;
+        padding:12px 18px;
+      }
+    }
+    
+/* Unified header + CTA styling across pages */
+header{
+  position:sticky;
+  top:0;
+  background:rgba(5,15,25,.94);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--brand2);
+  z-index:40;
+}
+nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 0;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:800;
+  letter-spacing:.22px;
+  color:var(--brand);
+  font-size:22px;
+  position:relative;
+}
+.logo-dot{
+  width:13px;
+  height:13px;
+  border-radius:50%;
+  background:var(--brand2);
+  box-shadow:0 0 0 6px rgba(42,229,194,.24);
+  animation:pulseGlow 3.2s ease-in-out infinite;
+}
+.logo::before{
+  content:"";
+  position:absolute;
+  inset:-6px -16px;
+  background:radial-gradient(circle at 0 50%,rgba(94,234,212,.22),transparent 65%);
+  z-index:-1;
+  border-radius:999px;
+  filter:blur(.6px);
+}
+.nav-links{
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+  font-size:14px;
+}
+.nav-links a{
+  color:#cbd5f5;
+  position:relative;
+  text-decoration:none;
+}
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:0;
+  height:2px;
+  background:linear-gradient(90deg,var(--brand-accent),var(--brand2));
+  transition:width .2s ease;
+  opacity:.9;
+}
+.nav-links a:hover::after{
+  width:100%;
+}
+.nav-links a[aria-current="page"]{
+  color:#e5f9ff;
+  font-weight:600;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:linear-gradient(135deg,#0ff,#66ffe0);
+  color:#002a24;
+  padding:12px 18px;
+  border-radius:14px;
+  font-weight:800;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 6px 22px rgba(0,255,200,.45);
+  transition:transform .2s ease,background .3s ease,box-shadow .3s ease;
+  text-decoration:none;
+  font-size:15px;
+}
+.btn:hover{
+  transform:translateY(-2px);
+  background:linear-gradient(135deg,#8bfff0,#3bffe0);
+  box-shadow:0 10px 28px rgba(0,255,210,.55);
+}
+.btn.ghost{
+  background:transparent;
+  color:var(--ink);
+  border:1px solid var(--brand2);
+  box-shadow:none;
+}
+.btn.ghost:hover{
+  color:var(--brand2);
+  border-color:var(--brand-accent);
+}
+
+/* Map pulse behind hero titles */
+.title{
+  position:relative;
+  z-index:1;
+}
+.title::before{
+  content:"";
+  position:absolute;
+  inset:-26px -40px;
+  background:radial-gradient(circle at 10% 30%,rgba(94,234,212,.26),transparent 60%);
+  opacity:.85;
+  filter:blur(8px);
+  z-index:-1;
+  pointer-events:none;
+  animation:mapPulse 7s ease-in-out infinite;
+}
+@keyframes mapPulse{
+  0%{transform:scale(.96) translateX(0);opacity:.7;}
+  50%{transform:scale(1.03) translateX(2px);opacity:1;}
+  100%{transform:scale(.96) translateX(0);opacity:.7;}
+}
+
+/* Topographic overlay */
+.section{
+  position:relative;
+  overflow:hidden;
+}
+.section::before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background:
+    radial-gradient(circle at 80% 10%,rgba(94,234,212,.25),transparent 70%),
+    radial-gradient(circle at 10% 90%,rgba(32,148,255,.18),transparent 70%);
+  opacity:.35;
+  z-index:-2;
+}
+.section::after{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background-image:
+    repeating-linear-gradient(135deg,rgba(255,255,255,.04) 0,rgba(255,255,255,.04) 1px,transparent 1px,transparent 7px),
+    repeating-linear-gradient(45deg,rgba(0,0,0,.22) 0,rgba(0,0,0,.22) 1px,transparent 1px,transparent 9px);
+  opacity:.13;
+  mix-blend-mode:soft-light;
+  pointer-events:none;
+  z-index:-1;
+}
+
+/* Card micro-animations */
+.card{
+  transition:transform .25s ease,border-color .2s ease,box-shadow .25s ease,background .25s ease;
+  background:radial-gradient(circle at 0 0,rgba(94,234,212,.18),transparent 55%), var(--card);
+}
+.card:hover{
+  transform:translateY(-4px) scale(1.01);
+  border-color:var(--brand-accent);
+  box-shadow:0 14px 32px rgba(0,0,0,.55);
+  background:radial-gradient(circle at 0 0,rgba(94,234,212,.32),transparent 55%), var(--card);
+}
+@media (max-width:900px){
+      .nav-links{gap:12px}
+      .section{padding:46px 0}
+    }
+  </style></head><body><header><div class="container"><nav aria-label="Secondary navigation"><div class="logo">
   <a href="index.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px">
     <span class="logo-dot" aria-hidden="true"></span>MapOps
   </a>
-</div><div class="nav-links"><a href="index.html#live-map" class="muted">Live Map</a><a href="index.html#demo-maps" class="muted">Demo Maps</a><a href="why.html" aria-current="page">Why MapOps</a><a href="how.html" class="muted">How It Works</a><a href="playbook.html" class="muted">Playbook</a><a href="index.html#pricing" class="muted">Pricing</a><a href="index.html#contact" class="btn">Start Map Demo</a></div></nav></div></header>
+</div><div class="nav-links"><a href="index.html#live-map" class="muted">Live Map</a><a href="index.html#demo-maps" class="muted">Demo Maps</a><a href="why.html" class="muted">Why MapOps</a><a href="how.html" class="muted">How It Works</a><a aria-current="page">Playbook</a><a href="index.html#pricing" class="muted">Pricing</a><a href="index.html#contact" class="btn">Get My Demo Map</a></div></nav></div></header>
 
 <main>
-  <!-- Hero -->
   <section class="section">
     <div class="container">
       <span class="kicker" style="color:#8fb9c8;letter-spacing:.08em;text-transform:uppercase;">Sales mapping playbook</span>
       <h1 class="title">Turn the Map into Motion</h1>
+      <p class="muted" style="font-size:13px;margin:4px 0 14px;">
+        <a href="index.html" style="color:#9fb3ce;text-decoration:none;">← Back to overview</a>
+      </p>
       <p class="subtitle" style="max-width:900px">
-        The operating rhythm to convert spatial clarity into revenue — flexible for any GTM, concrete enough to run this month.
+        A simple operating rhythm to turn your territory map into concrete plays, metrics, and wins — repeatable every quarter.
       </p>
     </div>
   </section>
 
-  <!-- Operating rhythm -->
   <section class="section">
     <div class="container grid cards">
-      <article class="card"><h3>1) Orientation</h3><p class="muted">Align on clusters, gaps, and north-star outcomes. Output: a battle map for the quarter.</p></article>
-      <article class="card"><h3>2) Convert to action</h3><p class="muted">Rep-level plans keyed to density, drive-time, and conversion. No spreadsheet gymnastics.</p></article>
-      <article class="card"><h3>3) Run the plays</h3><p class="muted">Use the map in pipeline reviews/QBRs. Spot overlap and cold zones in minutes.</p></article>
-      <article class="card"><h3>4) Measure the move</h3><p class="muted">Coverage %, velocity, activity by place. Compare baseline vs post-map.</p></article>
-      <article class="card"><h3>5) Refresh</h3><p class="muted">Every 60–90 days: update data, re-cut, add signals. Same canvas, faster decisions.</p></article>
+      <article class="card"><h3>1) Orientation</h3><p class="muted">Agree on what the map is actually saying. Where are your best customers clustered? Where are you strangely thin? What does “good coverage” look like for your world? Output: a clear, spatial picture of reality.</p></article>
+      <article class="card"><h3>2) Convert to action</h3><p class="muted">Translate map insights into territory changes, focus zones, and rep-level plans. The question is always: “What are the next 2–3 moves this map tells us to make?”</p></article>
+      <article class="card"><h3>3) Run the plays</h3><p class="muted">Build the map into your weekly and monthly rhythm — pipeline reviews, standups, route planning. Use it to keep teams anchored on where effort should go.</p></article>
+      <article class="card"><h3>4) Measure impact</h3><p class="muted">Track meetings, pipeline, and revenue by region, territory, and key corridors. Compare “before map” and “after map” periods to validate that changes are working.</p></article>
+      <article class="card"><h3>5) Refresh regularly</h3><p class="muted">Every 60–90 days, rerun the data. New accounts, new reps, new segments, same map canvas. Refresh plays without starting from scratch each time.</p></article>
     </div>
   </section>
 
-  <!-- Example plays -->
   <section class="section">
     <div class="container">
-      <h2 class="section-heading">Example plays</h2>
-      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
-        <article class="card"><h3>Quarterly realignment</h3><p class="muted">Rebalance books to match opportunity density; reduce overlap.</p></article>
-        <article class="card"><h3>Field day planner</h3><p class="muted">6–8 meetings using 30/45/60-min rings + cluster heatmaps.</p></article>
-        <article class="card"><h3>Expansion pilot</h3><p class="muted">Pick next city with incentives + competitor presence before hiring.</p></article>
-        <article class="card"><h3>Event blitz</h3><p class="muted">Post-conference radius blitz; geo-personalize outreach.</p></article>
-        <article class="card"><h3>QBR map mode</h3><p class="muted">Walk territory health live: coverage, conversion, velocity.</p></article>
-        <article class="card"><h3>Partner overlay</h3><p class="muted">Coordinate co-sell plays; avoid channel conflict by territory.</p></article>
+      <h2 class="section-heading">Example plays to run from the map</h2>
+      <p class="muted" style="max-width:860px;margin:0 0 18px">
+        Once the map exists, it becomes a reusable surface to answer different questions as your GTM evolves.
+      </p>
+      <div class="grid cards">
+        <article class="card">
+          <h3>Quarterly realignment</h3>
+          <p class="muted">
+            Re-balance territories around true opportunity density, not just historical logos. Use the map to keep books within a fair band and reduce firefights.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Field day planner</h3>
+          <p class="muted">
+            Cluster accounts into 30/45/60 minute drive rings around anchors. Build efficient road-warrior days with more meetings and less guessing.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Expansion pilot</h3>
+          <p class="muted">
+            Use density, incentives, and competitor presence to choose the next market. Test one or two cities on the map before making bigger bets.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Event blitz</h3>
+          <p class="muted">
+            Map target accounts around a conference location. Run pre- and post-event outreach by radius and travel time, not just a ZIP list.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Partner overlay</h3>
+          <p class="muted">
+            Overlay partner territories and key locations on top of your own. Identify where co-selling makes sense — and where you risk clashing.
+          </p>
+        </article>
+        <article class="card">
+          <h3>QBR map mode</h3>
+          <p class="muted">
+            Add one map slide to your QBRs: coverage, pipeline, and outcomes by region. Cut down on “it feels like…” debates and talk about what’s clearly visible.
+          </p>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- Anti-patterns -->
   <section class="section">
     <div class="container">
-      <h2 class="section-heading">Avoid these traps</h2>
-      <ul class="muted" style="line-height:1.9; max-width:900px">
-        <li><strong>Over-modeling:</strong> Track the few variables that move outcomes.</li>
-        <li><strong>Static thinking:</strong> Treat the map as living — refresh and iterate.</li>
-        <li><strong>Insight without motion:</strong> End every review with 3 explicit outcomes.</li>
+      <h2 class="section-heading">Common traps to avoid</h2>
+      <ul class="muted" style="line-height:1.9;max-width:880px">
+        <li><strong>Over-modeling:</strong> Track the few variables that actually drive coverage and outcomes. Don’t turn this into another giant dashboard.</li>
+        <li><strong>Static thinking:</strong> Territories are living. Expect them to change as you learn, and plan a refresh cadence upfront.</li>
+        <li><strong>Insight with no motion:</strong> Never end a map review without 2–3 clear actions, owners, and dates.</li>
       </ul>
     </div>
   </section>
 
-  <!-- Enablement & KPIs -->
   <section class="section">
-    <div class="container grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
-      <article class="card"><h3>Enablement artifacts</h3><p class="muted">Territory snapshots, annotated plays, rep-ready viewers, executive visuals.</p></article>
-      <article class="card"><h3>KPIs & cadence</h3><p class="muted">Coverage %, meetings/rep/day, cycle time, conversion by metro. Review bi-weekly; refresh 60–90 days.</p></article>
-      <article class="card"><h3>Rollout checklist</h3><p class="muted">Share viewer → align on plays → calendar the reviews → capture learnings → re-cut.</p></article>
-    </div>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
-      <a class="btn" href="index.html#contact">Start a Project</a>
-      <a class="btn ghost" href="index.html#pricing" style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,.18)">See Pricing</a>
+    <div class="container grid cards">
+      <article class="card">
+        <h3>Enablement assets</h3>
+        <p class="muted">
+          Territory one-pagers, “what this means for you” map snippets for reps, and exec-level snapshots for QBRs and board decks.
+        </p>
+      </article>
+      <article class="card">
+        <h3>Metrics that matter</h3>
+        <p class="muted">
+          Meetings and pipeline by region, activity in priority corridors, cycle time by territory, and win rate by coverage changes.
+        </p>
+      </article>
+      <article class="card">
+        <h3>Rollout checklist</h3>
+        <p class="muted">
+          Align leadership → brief managers → rep-facing session with map examples → establish a review cadence → capture wins → feed back into the next cut.
+        </p>
+      </article>
     </div>
   </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-heading">You bring the territory mess. MapOps brings the map and the motion.</h2>
+      <p class="muted" style="max-width:860px;margin:0 0 18px">
+        Use this playbook with your own data — or have MapOps build and run it with you. Either way, the first step is seeing your actual world on a map.
+      </p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn" href="index.html#contact">Get My Demo Map</a>
+        <a class="btn ghost" href="how.html">Back: How It Works</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="mobile-cta">
+    <a class="btn" href="index.html#contact">Get My Demo Map</a>
+  </div>
 </main>
 
-<footer><div class="container footer-row"><div>© <span id="year"></span> MapOps. All rights reserved.</div><div class="muted"><a href="index.html#contact">Privacy friendly.</a> No cookies. No trackers.</div></div><div style="display:none"></div><div class="container" style="padding:10px 0;color:#c2d0e0">© MapOps — If you can see it, you can sell it.</div></footer></body></html>
+
+<footer><div class="container footer-row">
+  <div>© <span id="year"></span> MapOps. All rights reserved.</div>
+  <div class="muted"><a href="index.html#contact">Privacy friendly.</a> No cookies. No trackers.</div>
+</div></footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body></html>

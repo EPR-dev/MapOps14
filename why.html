@@ -1,5 +1,11 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Why MapOps — Spatial RevOps</title><meta name="description" content="MapOps brings spatial clarity to revenue operations — find whitespace, align territories, and accelerate pipeline with Fused.io powered territory intelligence." /><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet"><style>
-    /* Inline styles for PREVIEW ONLY. On approval, these move to styles.css */
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" />
+<meta content="width=device-width,initial-scale=1" name="viewport" />
+<title>Why MapOps — Territory Intelligence for Modern RevOps</title>
+<meta content="Why MapOps exists, who it serves, and how territory-intelligent maps help revenue teams see coverage, whitespace, and opportunity clearly." name="description" />
+<link href="https://fonts.googleapis.com" rel="preconnect" />
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
     :root{
       --bg:#0b0f13; --card:#111820; --ink:#f3f8ff; --muted:#c2d0e0;
       --brand:#5eead4; --brand2:#2ae5c2; --brand-accent:#30ffd1;
@@ -19,67 +25,478 @@
     }
     a{color:var(--brand);text-decoration:none}
     a:hover{text-decoration:underline}
-
     .container{width:min(1180px, 92vw);margin-inline:auto}
     .grid{display:grid;gap:24px}
-
-    header{position:sticky;top:0;background:rgba(10,13,17,.8);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:40}
+    header{position:sticky;top:0;background:rgba(5,15,25,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--brand2);z-index:40}
     nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;color:var(--brand)}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;color:var(--brand);font-size:22px;position:relative;}
     .logo-dot{width:12px;height:12px;border-radius:50%;background:var(--brand2);box-shadow:0 0 0 6px rgba(42,229,194,.2);animation:pulseGlow 3.2s ease-in-out infinite}
-    .nav-links{display:flex;gap:18px;flex-wrap:wrap}
+    .logo::before{content:"";position:absolute;inset:-6px -14px;background:radial-gradient(circle at 0 50%,rgba(94,234,212,.18),transparent 65%);z-index:-1;border-radius:999px;filter:blur(0.5px)}
+    .nav-links{display:flex;gap:18px;flex-wrap:wrap;font-size:14px}
+    .nav-links a{color:#cbd5f5;position:relative;text-decoration:none}
+    .nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:linear-gradient(90deg,var(--brand-accent),var(--brand2));transition:width .2s ease;opacity:.9}
+    .nav-links a:hover::after{width:100%}
+    .nav-links a[aria-current="page"]{color:#e5f9ff;font-weight:600}
     .muted{color:#d2deea}
-
-    .btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--brand2),var(--brand));color:var(--brand-ink);padding:10px 16px;border-radius:12px;font-weight:700;border:1px solid rgba(0,0,0,.08);box-shadow:0 6px 18px rgba(42,229,194,.3);transition:transform .2s ease,background .3s ease;text-decoration:none}
+    .btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0ff,#66ffe0);color:#002a24;padding:12px 18px;border-radius:14px;font-weight:800;border:1px solid rgba(0,0,0,.08);box-shadow:0 6px 22px rgba(0,255,200,.45);transition:transform .2s ease,background .3s ease;text-decoration:none;font-size:15px}
     .btn:hover{transform:translateY(-2px);background:linear-gradient(135deg,var(--brand-accent),var(--brand))}
     .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--brand2)}
     .btn.ghost:hover{color:var(--brand2);border-color:var(--brand)}
-
-    @keyframes pulseGlow{0%{box-shadow:0 0 0 6px rgba(42,229,194,.18)}50%{box-shadow:0 0 0 10px rgba(42,229,194,.08)}100%{box-shadow:0 0 0 6px rgba(42,229,194,.18)}}
-
+    @keyframes pulseGlow{
+      0%{box-shadow:0 0 0 6px rgba(42,229,194,.18)}
+      50%{box-shadow:0 0 0 10px rgba(42,229,194,.08)}
+      100%{box-shadow:0 0 0 6px rgba(42,229,194,.18)}
+    }
     .section{padding:60px 0;position:relative}
-    .section::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.08;background:radial-gradient(circle at 80% 10%,var(--brand2),transparent 70%)}
-
+    .section::before{
+      content:"";position:absolute;inset:0;z-index:-1;opacity:.08;
+      background:radial-gradient(circle at 80% 10%,var(--brand2),transparent 70%);
+    }
     .title{font-size:clamp(34px,5vw,56px);line-height:1.12;margin:0 0 10px;background:linear-gradient(90deg,var(--brand-accent),var(--brand));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
     .subtitle{font-size:clamp(18px,2.2vw,22px);color:#eaf6ff;opacity:.95;margin:0 0 14px}
     h2.section-heading{color:var(--brand);text-shadow:0 0 8px rgba(94,234,212,.3);margin:0 0 8px;font-size:26px}
-
-    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);transition:transform .3s ease,border-color .3s ease}
-    .card:hover{transform:translateY(-4px);border-color:var(--brand-accent)}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);transition:transform .2s ease,border-color .2s ease}
+    .card:hover{transform:translateY(-3px);border-color:var(--brand-accent)}
     .cards{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .stat{background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:12px;padding:14px}
+    footer{border-top:1px solid var(--line);padding:22px 0 34px;margin-top:20px}
+    .footer-row{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;color:#9fb3ce;flex-wrap:wrap}
 
-    .role-ico{display:inline-flex;vertical-align:middle;margin-right:8px;opacity:.95}
-    .role-ico svg{width:20px;height:20px;display:block;filter:drop-shadow(0 0 8px rgba(94,234,212,.35))}
-    .card h3{display:flex;align-items:center;gap:10px;margin-top:0}
+    .mobile-cta{display:none}
+    @media (max-width:700px){
+      body{padding-bottom:76px;}
+      nav{flex-wrap:wrap;row-gap:8px;}
+      .nav-links{justify-content:flex-start;font-size:13px;}
+      .title{font-size:clamp(28px,7vw,36px);}
+      .subtitle{font-size:15px;}
+      .section{padding:42px 0;}
+      .cards{grid-template-columns:1fr;}
 
-    .cta-hero{display:grid;gap:16px;grid-template-columns:1fr;align-items:start;max-width:920px;margin-inline:auto}
-    .cta-panel{background:radial-gradient(1200px 600px at 20% 0%, rgba(94,234,212,.15), transparent 60%), var(--card); border:1px solid rgba(94,234,212,.18); border-radius:20px; padding:22px; box-shadow:0 16px 40px rgba(0,0,0,.45)}
+      .mobile-cta{
+        display:block;
+        position:fixed;
+        bottom:14px;
+        left:50%;
+        transform:translateX(-50%);
+        z-index:60;
+        width:100%;
+        max-width:460px;
+        padding:0 16px;
+      }
+      .mobile-cta .btn{
+        width:100%;
+        justify-content:center;
+        font-size:15px;
+        padding:12px 18px;
+      }
+    }
+    
+/* Unified header + CTA styling across pages */
+header{
+  position:sticky;
+  top:0;
+  background:rgba(5,15,25,.94);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--brand2);
+  z-index:40;
+}
+nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 0;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:800;
+  letter-spacing:.22px;
+  color:var(--brand);
+  font-size:22px;
+  position:relative;
+}
+.logo-dot{
+  width:13px;
+  height:13px;
+  border-radius:50%;
+  background:var(--brand2);
+  box-shadow:0 0 0 6px rgba(42,229,194,.24);
+  animation:pulseGlow 3.2s ease-in-out infinite;
+}
+.logo::before{
+  content:"";
+  position:absolute;
+  inset:-6px -16px;
+  background:radial-gradient(circle at 0 50%,rgba(94,234,212,.22),transparent 65%);
+  z-index:-1;
+  border-radius:999px;
+  filter:blur(.6px);
+}
+.nav-links{
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+  font-size:14px;
+}
+.nav-links a{
+  color:#cbd5f5;
+  position:relative;
+  text-decoration:none;
+}
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:0;
+  height:2px;
+  background:linear-gradient(90deg,var(--brand-accent),var(--brand2));
+  transition:width .2s ease;
+  opacity:.9;
+}
+.nav-links a:hover::after{
+  width:100%;
+}
+.nav-links a[aria-current="page"]{
+  color:#e5f9ff;
+  font-weight:600;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:linear-gradient(135deg,#0ff,#66ffe0);
+  color:#002a24;
+  padding:12px 18px;
+  border-radius:14px;
+  font-weight:800;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 6px 22px rgba(0,255,200,.45);
+  transition:transform .2s ease,background .3s ease,box-shadow .3s ease;
+  text-decoration:none;
+  font-size:15px;
+}
+.btn:hover{
+  transform:translateY(-2px);
+  background:linear-gradient(135deg,#8bfff0,#3bffe0);
+  box-shadow:0 10px 28px rgba(0,255,210,.55);
+}
+.btn.ghost{
+  background:transparent;
+  color:var(--ink);
+  border:1px solid var(--brand2);
+  box-shadow:none;
+}
+.btn.ghost:hover{
+  color:var(--brand2);
+  border-color:var(--brand-accent);
+}
 
-    .steps{display:grid;gap:10px;list-style:none;padding:0;margin:10px 0 0}
-    .steps li{display:flex;gap:10px;align-items:flex-start}
-    .badge-num{flex:0 0 26px;height:26px;border-radius:999px;background:linear-gradient(135deg,var(--brand2),var(--brand));color:var(--brand-ink);font-weight:800;display:inline-flex;align-items:center;justify-content:center}
-    .small{font-size:13px;color:#a7bbd1}
+/* Map pulse behind hero titles */
+.title{
+  position:relative;
+  z-index:1;
+}
+.title::before{
+  content:"";
+  position:absolute;
+  inset:-26px -40px;
+  background:radial-gradient(circle at 10% 30%,rgba(94,234,212,.26),transparent 60%);
+  opacity:.85;
+  filter:blur(8px);
+  z-index:-1;
+  pointer-events:none;
+  animation:mapPulse 7s ease-in-out infinite;
+}
+@keyframes mapPulse{
+  0%{transform:scale(.96) translateX(0);opacity:.7;}
+  50%{transform:scale(1.03) translateX(2px);opacity:1;}
+  100%{transform:scale(.96) translateX(0);opacity:.7;}
+}
 
-    footer{border-top:1px solid var(--line);padding:28px 0 48px}
-    .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+/* Topographic overlay */
+.section{
+  position:relative;
+  overflow:hidden;
+}
+.section::before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background:
+    radial-gradient(circle at 80% 10%,rgba(94,234,212,.25),transparent 70%),
+    radial-gradient(circle at 10% 90%,rgba(32,148,255,.18),transparent 70%);
+  opacity:.35;
+  z-index:-2;
+}
+.section::after{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background-image:
+    repeating-linear-gradient(135deg,rgba(255,255,255,.04) 0,rgba(255,255,255,.04) 1px,transparent 1px,transparent 7px),
+    repeating-linear-gradient(45deg,rgba(0,0,0,.22) 0,rgba(0,0,0,.22) 1px,transparent 1px,transparent 9px);
+  opacity:.13;
+  mix-blend-mode:soft-light;
+  pointer-events:none;
+  z-index:-1;
+}
 
-    @media (max-width:900px){
+/* Card micro-animations */
+.card{
+  transition:transform .25s ease,border-color .2s ease,box-shadow .25s ease,background .25s ease;
+  background:radial-gradient(circle at 0 0,rgba(94,234,212,.18),transparent 55%), var(--card);
+}
+.card:hover{
+  transform:translateY(-4px) scale(1.01);
+  border-color:var(--brand-accent);
+  box-shadow:0 14px 32px rgba(0,0,0,.55);
+  background:radial-gradient(circle at 0 0,rgba(94,234,212,.32),transparent 55%), var(--card);
+}
+@media (max-width:900px){
       .nav-links{gap:12px}
       .section{padding:46px 0}
     }
-  
-/* playful cameo */
-.pin-buddy{position:absolute;right:-8px;bottom:-6px;width:120px;height:auto;opacity:.9;pointer-events:none;filter:drop-shadow(0 6px 18px rgba(42,229,194,.25))}
-.pin-buddy.float{animation:buddyFloat 7s ease-in-out infinite}
-@keyframes buddyFloat{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
-.cameo-wrap{position:relative}
-
-</style></head><body><header><div class="container"><nav aria-label="Secondary navigation"><div class="logo">
+  </style></head><body><header><div class="container"><nav aria-label="Secondary navigation"><div class="logo">
   <a href="index.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px">
     <span class="logo-dot" aria-hidden="true"></span>MapOps
   </a>
-</div><div class="nav-links"><a href="index.html#live-map" class="muted">Live Map</a><a href="index.html#demo-maps" class="muted">Demo Maps</a><a href="why.html" aria-current="page">Why MapOps</a><a href="how.html" class="muted">How It Works</a><a href="playbook.html" class="muted">Playbook</a><a href="index.html#pricing" class="muted">Pricing</a><a href="index.html#contact" class="btn">Start Map Demo</a></div></nav></div></header><main><section class="section" style="padding-top:40px"><div class="container"><div class="cameo-wrap"><h1 class="title">Why MapOps</h1><p class="subtitle">Sales isn’t just numbers — it’s geography. MapOps turns location data into competitive advantage, so revenue teams can operate with clarity and speed.</p><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px"><a href="index.html#contact" class="btn">Start a Map Demo</a><a href="index.html#pricing" class="btn ghost">See Pricing</a></div><p class="small" style="margin-top:10px;opacity:.9;color:#5eead4">Built on <strong>Fused.io</strong> — production-ready spatial analytics.</p>
-</div></div></section><section class="section"><div class="container"><h2 class="section-heading">Built on Fused.io — Engineered for Scale</h2><p class="muted" style="margin:0 0 18px">Under the hood, MapOps runs on <strong>Fused.io</strong>, a high-performance spatial analytics platform. We’ve logged hundreds of hours building territory frameworks, lead-density models, drive-time analysis, and automated map templates tailored to revenue workflows — so you don’t have to.</p><div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px"><div class="stat"><strong>100+ hours</strong><br><span class="muted">of pre-built spatial logic</span></div><div class="stat"><strong>12+ templates</strong><br><span class="muted">for common GTM motions</span></div><div class="stat"><strong>CSV → Map</strong><br><span class="muted">zero-code ingestion</span></div><div class="stat"><strong>Data enrichment</strong><br><span class="muted">firmographic + demographic</span></div></div></div></section><section class="section"><div class="container"><h2 class="section-heading">Built for Every Team that Touches Revenue</h2><div class="grid cards"><article class="card"><h3><span class="role-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#5eead4" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></span>RevOps</h3><p class="muted">See territory health, coverage, and pipeline distribution at a glance. Identify whitespace, rebalance books, and standardize spatial reporting.</p></article><article class="card"><h3><span class="role-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#5eead4" stroke-width="2"><rect x="3" y="3" width="18" height="12"/><path d="M7 17h10l-5 4z"/></svg></span>Sales Directors</h3><p class="muted">Aim reps at high-fit pockets, reduce overlap, and build efficient routes. Shrink time-to-quota with data-backed direction.</p></article><article class="card"><h3><span class="role-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#5eead4" stroke-width="2"><path d="M12 2l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></span>Founders</h3><p class="muted">Know where growth is coming from — and where it’s not. Decide your next hire and next region with geographic conviction.</p></article><article class="card"><h3><span class="role-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#5eead4" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>GTM Strategy</h3><p class="muted">Turn location intelligence into smarter segmentation and target selection. Prioritize metros that match demand signals.</p></article><article class="card"><h3><span class="role-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#5eead4" stroke-width="2"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span>Marketing & Growth</h3><p class="muted">Align campaigns to territories that convert. Use foot-traffic and cluster maps to place OOH and ABM with precision.</p></article><article class="card"><h3><span class="role-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#5eead4" stroke-width="2"><path d="M3 20c2-3 5-5 9-5s7 2 9 5"/><circle cx="12" cy="8" r="4"/></svg></span>Field & Channel</h3><p class="muted">Create route-ready days with 30/45/60-minute rings. Minimize windshield time; maximize meetings.</p></article><article class="card"><h3><span class="role-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#5eead4" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/></svg></span>Sales Ops & Enablement</h3><p class="muted">Package repeatable, action-oriented maps for reps. Standardize territory playbooks and QBR visuals.</p></article><article class="card"><h3><span class="role-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#5eead4" stroke-width="2"><path d="M9 20l-5.5-5.5a4 4 0 115.5-5.5"/><path d="M14 6l7 7-7 7"/></svg></span>Customer Success</h3><p class="muted">Map accounts by region, tier, and health. Plan onsite visits by density and proximity to maximize renewals and expansion.</p></article></div></div></section><section class="section"><div class="container"><h2 class="section-heading">Why Spatial Matters</h2><p class="muted" style="margin:0 0 18px"><strong>CRMs tell you who and what.</strong> MapOps shows you <em>where</em> — the missing dimension that changes how teams plan, allocate, and execute.</p><ul class="muted" style="display:grid;gap:10px;padding-left:18px"><li><strong>Find whitespace faster:</strong> Surface high-fit pockets before competitors do.</li><li><strong>Align territories with reality:</strong> Balance coverage around true opportunity density.</li><li><strong>See pipeline by place:</strong> Visualize health by region, route, or rep.</li><li><strong>Eliminate hidden inefficiencies:</strong> Reveal overlap, dead zones, and wasted travel.</li></ul></div></section><section class="section"><div class="container"><h2 class="section-heading">The MapOps Difference</h2><div class="grid cards"><article class="card"><h3>Spatial-first</h3><p class="muted">We don’t add maps to dashboards — we start with the map and build decisions outward.</p></article><article class="card"><h3>Fused.io Native</h3><p class="muted">Production-grade performance, shareable viewers, and repeatable templates.</p></article><article class="card"><h3>Zero-Code Friendly</h3><p class="muted">RevOps and GTM teams can run updates from CSV or CRM exports — no GIS background required.</p></article><article class="card"><h3>Actionable by Design</h3><p class="muted">Every map answers a business question and ties to a concrete play.</p></article></div></div></section><section class="section"><div class="container"><h2 class="section-heading">Where These Maps Shine</h2><p class="muted" style="margin:0 0 18px">Tactical tools your team can use immediately — from weekly cadence to board-level moments.</p><div class="grid cards"><article class="card"><h3>Planning</h3><p class="muted">Annual planning, capacity modeling, and territory design — align headcount to true market opportunity.</p></article><article class="card"><h3>Meetings</h3><p class="muted">Weekly pipeline reviews with spatial context; cut opinion wars with a shared map of reality.</p></article><article class="card"><h3>Investor Docs</h3><p class="muted">Crystal-clear market coverage visuals for board decks and fundraises; show traction by region.</p></article><article class="card"><h3>Debriefs</h3><p class="muted">Post-mortems that reveal missed pockets, overlap, and travel waste — then feed changes back into plan.</p></article><article class="card"><h3>QBRs & Forecast</h3><p class="muted">Quarterly business reviews with spatial KPIs (coverage, conversion, velocity) per metro or territory.</p></article><article class="card"><h3>Territory Changes</h3><p class="muted">Re-cuts that keep books balanced and reps focused; communicate transitions with clarity.</p></article><article class="card"><h3>Field Days</h3><p class="muted">Route 6–8 meetings per day using 30/45/60-minute rings and cluster heatmaps.</p></article><article class="card"><h3>Events & Blitzes</h3><p class="muted">Radius blitz around conferences; pre-book meetings and geo-personalize outreach.</p></article><article class="card"><h3>Expansion</h3><p class="muted">Pick your next city using incentives, demographics, and competitor presence — before you hire.</p></article><article class="card"><h3>Partners</h3><p class="muted">Overlay partner territories to coordinate co-sell plays and avoid channel conflict.</p></article></div><div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap"><a href="index.html#contact" class="btn">Get My Demo Map</a><a href="index.html#demo-maps" class="btn ghost">Preview Demo Maps</a></div></div></section><section class="section" id="demo-cta"><div class="container cta-hero"><div><h2 class="section-heading">See Your Market — Not Just Your Metrics</h2><p class="muted">You’ve read the why. Now <strong>see it with your data</strong>. We’ll generate a private, interactive map you can open in your browser — no CRM connection required.</p><div class="cta-panel"><div style="display:flex;gap:14px;flex-wrap:wrap;color:#9fb0c6;margin-bottom:8px"><span>🌞 Climate</span><span>⚙️ Industrial</span><span>💡 SaaS</span><span>🏥 Health</span><span>🏗️ Built World</span></div><ul class="steps"><li><span class="badge-num">1</span><span>Upload a simple CSV of accounts or leads (name + address works).</span></li><li><span class="badge-num">2</span><span>We render your <em>Demo Map</em> — territories, clusters, and drive-time rings.</span></li><li><span class="badge-num">3</span><span>Explore live in your browser. Share with your team.</span></li></ul><div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap"><a href="index.html#contact" class="btn">Get My Demo Map</a><a href="index.html#contact" class="btn ghost">Prefer email?</a></div></div><p class="muted" style="margin-top:8px">We keep it private. No integrations required.</p></div></div><p class="small" style="text-align:center;margin-top:10px">No decks. No long calls. <strong>Just your data — visualized.</strong></p></section><section class="section" id="how-it-works"><div class="container"><h2 class="section-heading">How MapOps works (productized)</h2><div class="grid cards"><div class="card"><h3>1) Send a CSV</h3><p class="muted">Accounts, leads, or customers. No integrations required.</p></div><div class="card"><h3>2) We build the map</h3><p class="muted">Cleaned to your data model, with territory logic that matches your motion.</p></div><div class="card"><h3>3) You make decisions</h3><p class="muted">Coverage clarity, under-served markets, and executive visuals for your plan.</p></div></div><p class="muted" style="margin-top:10px">MapOps acts like your <strong>fractional GIS</strong> for sales — productized, repeatable, and aligned to RevOps.</p></div></section><section class="section" id="week-one"><div class="container"><h2 class="section-heading">What you’ll have in week one</h2><ul class="small" style="list-style:none;padding:0;max-width:820px;margin:0 auto;text-align:left"><li style="margin:10px 0">• One interactive map that shows <strong>coverage, gaps, and quick wins</strong></li><li style="margin:10px 0">• Three <strong>recommended actions</strong> to improve territory performance</li><li style="margin:10px 0">• <strong>Executive‑grade visuals</strong> you can drop into your board deck</li></ul><div style="text-align:center;margin-top:14px"><a href="index.html#contact" class="btn">Request a Demo</a><a href="index.html#contact" class="btn ghost">Ask a question</a></div></div></section></main><footer><div class="container footer-row"><div>© <span id="year"></span> MapOps. All rights reserved.</div><div class="muted"><a href="index.html#contact">Privacy friendly.</a> No cookies. No trackers.</div></div><div style="display:none"></div><div class="container" style="padding:10px 0;color:#c2d0e0">© MapOps — If you can see it, you can sell it.</div></footer><script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script></body></html>
+</div><div class="nav-links"><a href="index.html#live-map" class="muted">Live Map</a><a href="index.html#demo-maps" class="muted">Demo Maps</a><a aria-current="page">Why MapOps</a><a href="how.html" class="muted">How It Works</a><a href="playbook.html" class="muted">Playbook</a><a href="index.html#pricing" class="muted">Pricing</a><a href="index.html#contact" class="btn">Get My Demo Map</a></div></nav></div></header>
+
+<main>
+  <section class="section" style="padding-top:40px">
+    <div class="container">
+      <h1 class="title">Why MapOps</h1>
+      <p class="muted" style="font-size:13px;margin:4px 0 14px;">
+        <a href="index.html" style="color:#9fb3ce;text-decoration:none;">← Back to overview</a>
+      </p>
+      <p class="subtitle" style="max-width:900px">
+        Revenue is geographic. Your CRM just doesn’t show it. MapOps reveals the territory reality behind your numbers, so coverage, hiring, and expansion decisions stop feeling like guesswork.
+      </p>
+      <p class="muted" style="max-width:720px;margin:0 0 16px">
+        If you’ve ever thought, “I feel like we’re over-covered in some metros and completely ignoring others,” you’re exactly who this was built for.
+      </p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px">
+        <a href="index.html#contact" class="btn">Get My Demo Map</a>
+        <a href="how.html" class="btn ghost">Next: How It Works</a>
+      </div>
+      <p class="muted" style="margin-top:10px;max-width:640px;font-size:13px;color:#5eead4">
+        Powered by <strong>Fused.io</strong> — production-ready spatial analytics.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-heading">The real problem isn’t your reps — it’s your view</h2>
+      <p class="muted" style="margin:0 0 18px;max-width:900px">
+        CRMs and dashboards tell you who owns what and how much they’ve closed. They don’t show you the <strong>geography</strong> behind it:
+      </p>
+      <div class="grid cards">
+        <article class="card">
+          <h3>Hidden overlap</h3>
+          <p class="muted">
+            Multiple reps quietly dogpiling the same metros and corridors because nobody can see the true footprint on a map.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Invisible whitespace</h3>
+          <p class="muted">
+            High-fit pockets with zero coverage, simply because they don’t show up in a pivot table or dashboard.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Windshield waste</h3>
+          <p class="muted">
+            Reps burning hours in the car between meetings that never should’ve been booked that far apart.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Weak territory stories</h3>
+          <p class="muted">
+            Territory resets that “feel” right, but are hard to defend in a board deck or QBR because they’re not visual.
+          </p>
+        </article>
+      </div>
+      <p class="muted" style="margin-top:16px;max-width:820px">
+        MapOps exists to give you a clear picture of where your opportunity really is — and to back your territory calls with something better than vibes.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-heading">Why spatial matters for revenue</h2>
+      <p class="muted" style="margin:0 0 18px;max-width:900px">
+        When you add location to your revenue data, you suddenly see patterns that were completely invisible in rows and columns:
+      </p>
+      <ul class="muted" style="display:grid;gap:10px;padding-left:18px;max-width:900px">
+        <li><strong>Find whitespace faster:</strong> Spot high-fit corridors and metro clusters before your competitors do.</li>
+        <li><strong>Align territories with reality:</strong> Balance books around true opportunity density, not arbitrary ZIP lists.</li>
+        <li><strong>See pipeline by place:</strong> Understand which regions are healthy, which are lagging, and where to shift coverage.</li>
+        <li><strong>Kill hidden inefficiencies:</strong> Reveal dead zones, overlap, and travel patterns that drag down productivity.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-heading">Why MapOps instead of “one more tool”</h2>
+      <div class="grid cards">
+        <article class="card">
+          <h3>Service, not another SaaS login</h3>
+          <p class="muted">
+            MapOps is a done-for-you mapping studio. You export the data, we build the maps, and you get territory plans you can actually act on.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Spatial-first thinking</h3>
+          <p class="muted">
+            The map isn’t an add-on. It’s the starting point. Every recommendation flows from what we can clearly see on the territory canvas.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Built on Fused.io</h3>
+          <p class="muted">
+            Under the hood, MapOps runs on <strong>Fused.io</strong> — a high-performance spatial analytics platform. You get serious spatial power without hiring a GIS team.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Actionable by design</h3>
+          <p class="muted">
+            Every map ties to a decision: rebalance a territory, move a rep, pick a next city, focus a campaign, or plan a high-impact field day.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-heading">Who MapOps is for</h2>
+      <p class="muted" style="margin:0 0 18px;max-width:900px">
+        MapOps is built for revenue teams who live in the real world — with reps, routes, and regions that don’t fit neatly in a spreadsheet.
+      </p>
+      <div class="grid cards">
+        <article class="card">
+          <h3>Heads of Sales &amp; RevOps</h3>
+          <p class="muted">
+            Own territory design, coverage, and growth plans. Need to walk into QBRs with a clear, defensible story.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Regional Directors</h3>
+          <p class="muted">
+            Manage teams across states or metros. Want fair books, less overlap drama, and clear focus for each rep.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Founders &amp; GTM Leaders</h3>
+          <p class="muted">
+            Building or rethinking GTM. Need to decide where to hire next and which cities are worth attacking first.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Field &amp; Channel Teams</h3>
+          <p class="muted">
+            Live in the car and on-site. Need route-ready days, partner alignment, and ways to squeeze more meetings into each trip.
+          </p>
+        </article>
+      </div>
+      <p class="muted" style="margin-top:16px;max-width:820px">
+        If you’re fully inbound, have no territories, and run a tiny team, you probably don’t need MapOps yet. Everyone else is leaving money on the table by flying blind.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-heading">Where these maps shine</h2>
+      <p class="muted" style="margin:0 0 18px">
+        Tactical tools your team can use immediately — from weekly cadence to board-level moments.
+      </p>
+      <div class="grid cards">
+        <article class="card">
+          <h3>Planning</h3>
+          <p class="muted">
+            Annual planning and headcount modeling anchored in real market coverage, not guesswork.
+          </p>
+        </article>
+        <article class="card">
+          <h3>QBRs &amp; forecasts</h3>
+          <p class="muted">
+            Walk the map live: coverage, pipeline, and performance by region — without a 60-slide deck.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Territory changes</h3>
+          <p class="muted">
+            Redraw territories with clear visuals that keep books balanced and help reps understand the “why.”
+          </p>
+        </article>
+        <article class="card">
+          <h3>Field days</h3>
+          <p class="muted">
+            Build 6–8 meeting days with 30/45/60-minute rings and cluster maps instead of Google Maps guesswork.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Events &amp; blitzes</h3>
+          <p class="muted">
+            Radius blitz around conferences and anchor accounts; geo-personalize outreach and follow-up.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Expansion bets</h3>
+          <p class="muted">
+            Pick the next city or region using incentives, demand signals, and competitor presence — before you sign a lease or hire.
+          </p>
+        </article>
+      </div>
+      <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+        <a href="index.html#contact" class="btn">Get My Demo Map</a>
+        <a href="index.html#demo-maps" class="btn ghost">Preview Demo Maps</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="demo-cta">
+    <div class="container">
+      <h2 class="section-heading">See your market — not just your metrics</h2>
+      <p class="muted" style="max-width:820px">
+        You don’t need another deck to convince you maps are useful. You need to see your own territory on a map and feel the “oh… wow” moment.
+      </p>
+      <div class="card" style="margin-top:16px">
+        <p class="muted" style="margin-top:0"><strong>What a Demo Map looks like:</strong></p>
+        <ul class="muted" style="line-height:1.9;max-width:820px">
+          <li>Your accounts and opportunities plotted on a live map</li>
+          <li>Basic territory overlays so you can see overlap and gaps</li>
+          <li>Callouts for 2–3 obvious whitespace or rebalance plays</li>
+        </ul>
+        <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap">
+          <a href="index.html#contact" class="btn">Get My Demo Map</a>
+          <a href="how.html" class="btn ghost">Next: How the process works</a>
+        </div>
+        <p class="muted" style="margin-top:8px;font-size:13px">
+          No integrations. No deck-walk. Just your data — visualized.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="mobile-cta">
+    <a class="btn" href="index.html#contact">Get My Demo Map</a>
+  </div>
+</main>
+
+
+<footer>
+  <div class="container footer-row">
+    <div>© <span id="year"></span> MapOps. All rights reserved.</div>
+    <div class="muted"><a href="index.html#contact">Privacy friendly.</a> No cookies. No trackers.</div>
+  </div>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body></html>
