@@ -7,6 +7,10 @@
   --muted:#c2d0e0;
   --brand:#5eead4;
   --brand2:#2ae5c2;
+  /* Secondary accents (neon, used sparingly for rhythm) */
+  --accent-blue:#B36BFF;   /* neon purple */
+  --accent-amber:#A6FF4D;  /* neon lime */
+  --accent-grad:linear-gradient(90deg, rgba(179,107,255,0), rgba(179,107,255,.65), rgba(94,234,212,.65), rgba(166,255,77,.55), rgba(166,255,77,0));
   --line:rgba(255,255,255,.12);
 }
 html,body{background-color:var(--bg); color:var(--ink);}
@@ -63,7 +67,49 @@ a:hover{text-decoration:underline}
 .title{font-size:clamp(34px,5vw,56px); line-height:1.12; margin:0 0 10px;
        background:linear-gradient(90deg,#30ffd1,#5eead4); -webkit-background-clip:text; -webkit-text-fill-color:transparent}
 .subtitle{font-size:clamp(18px,2.2vw,22px); color:#eaf6ff; opacity:.95; margin:0 0 14px}
-.section-heading{color:var(--brand); text-shadow:0 0 8px rgba(94,234,212,.3); margin:0 0 8px; font-size:26px}
+.section-heading{
+  color:var(--ink);
+  margin:0 0 12px;
+  font-size:26px;
+  letter-spacing:-0.01em;
+  display:inline-block;
+  position:relative;
+  padding-bottom:10px;
+}
+.section-heading::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:120px;
+  height:3px;
+  border-radius:999px;
+  background:linear-gradient(90deg, rgba(94,234,212,.0), rgba(94,234,212,.85), rgba(94,234,212,.0));
+  box-shadow:0 0 18px rgba(94,234,212,.25);
+}
+
+/* Accent helpers (more unified than changing the whole heading color) */
+.section-heading.blue::after{
+  background:linear-gradient(90deg, rgba(179,107,255,0), rgba(179,107,255,.85), rgba(94,234,212,.75), rgba(179,107,255,0));
+  box-shadow:0 0 18px rgba(179,107,255,.22);
+}
+.section-heading.amber::after{
+  background:linear-gradient(90deg, rgba(166,255,77,0), rgba(166,255,77,.88), rgba(94,234,212,.65), rgba(166,255,77,0));
+  box-shadow:0 0 18px rgba(166,255,77,.18);
+}
+
+.card.accent-blue{border-top:2px solid rgba(179,107,255,.55)}
+.card.accent-amber{border-top:2px solid rgba(166,255,77,.45)}
+
+.pill-blue{border-color:rgba(179,107,255,.55); color:#d9c7ff}
+.pill-amber{border-color:rgba(166,255,77,.5); color:#d8ffb3}
+
+/* Number badge base for steps */
+.badge-num{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:999px;
+  background:linear-gradient(135deg,var(--brand2),var(--brand));color:#063b33;font-weight:900;margin-right:8px}
+
+.badge-num.blue{background:linear-gradient(135deg,var(--accent-blue), rgba(94,234,212,.95)); color:#130a2a}
+.badge-num.amber{background:linear-gradient(135deg,var(--accent-amber), rgba(94,234,212,.85)); color:#0b2200}
 
 /* Buttons */
 .btn{display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,var(--brand2),var(--brand));
@@ -153,4 +199,15 @@ nav{display:flex; align-items:center; justify-content:space-between; padding:14p
     min-width:520px;
     font-size:13px;
   }
+}
+
+
+/* Header boost */
+
+.section-heading,
+h1, h2 {
+  background: linear-gradient(90deg, #6dffdf, #9d7bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 18px rgba(157,123,255,0.15);
 }
