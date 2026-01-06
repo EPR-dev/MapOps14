@@ -211,3 +211,69 @@ h1, h2 {
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 18px rgba(157,123,255,0.15);
 }
+
+
+
+/* ============== Header nav color boost ============== */
+header .nav-links a,
+header .nav-links a.muted{
+  color: rgba(243,248,255,.82);
+}
+header .nav-links a:hover{
+  color: var(--brand2);
+  text-shadow: 0 0 14px rgba(42,229,194,.28);
+}
+header .nav-links a:focus-visible{
+  outline: 2px solid rgba(166,255,77,.55);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+header .nav-links a[aria-current="page"]{
+  background: linear-gradient(90deg, var(--brand2), var(--accent-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 18px rgba(179,107,255,.22);
+}
+
+/* NAV LINK COLOR UPDATE */
+.nav-links a {
+  color: #9ef7e5;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #9d7bff;
+  text-shadow: 0 0 10px rgba(157,123,255,0.45);
+}
+
+.nav-links a[aria-current="page"] {
+  color: #6dffdf;
+  text-shadow: 0 0 12px rgba(109,255,223,0.6);
+}
+
+/* CTA BUTTON TEXT COLOR */
+.btn {
+  color: #042b24;
+}
+
+
+/* === NAV FINAL OVERRIDES (strong specificity) === */
+header .nav-links a.muted{
+  color:#9ef7e5 !important;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+header .nav-links a.muted:hover{
+  color:#9d7bff !important;
+  text-shadow: 0 0 10px rgba(157,123,255,0.45);
+}
+header .nav-links a[aria-current="page"]{
+  color:#6dffdf !important;
+  text-shadow: 0 0 12px rgba(109,255,223,0.55);
+}
+
+/* CTA text color */
+header .nav-links a.btn,
+header .nav-links a.btn:hover{
+  color:#042b24 !important;
+  text-shadow:none !important;
+}
