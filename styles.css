@@ -277,3 +277,19 @@ header .nav-links a.btn:hover{
   color:#042b24 !important;
   text-shadow:none !important;
 }
+
+/* === Index CTA header fix === */
+/* Make 'Get In Touch' solid and calm, not gradient */
+#index-cta h2,
+#index-cta .section-heading,
+.section.get-in-touch h2 {
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  color: var(--ink) !important;
+  text-shadow: none !important;
+}
+
+#index-cta .section-heading::after,
+.section.get-in-touch .section-heading::after {
+  display: none !important;
+}
