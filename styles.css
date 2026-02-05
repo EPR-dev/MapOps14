@@ -58,9 +58,34 @@ a:hover{text-decoration:underline}
 .grid{display:grid; gap:24px}
 
 /* Cards */
-.card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
-      padding:22px; box-shadow:0 12px 28px rgba(0,0,0,.35)}
-.card h3{margin:0 0 8px; color:var(--brand)}
+.card{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(120% 120% at 0% 0%, rgba(94,234,212,.08), transparent 55%),
+    var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:22px;
+  box-shadow:0 12px 28px rgba(0,0,0,.35);
+}
+.card::before{
+  content:"";
+  position:absolute;
+  left:14px;
+  right:14px;
+  top:12px;
+  height:3px;
+  border-radius:999px;
+  opacity:.9;
+  background:linear-gradient(90deg,
+    rgba(94,234,212,0),
+    var(--card-accent, rgba(94,234,212,.85)),
+    rgba(94,234,212,0)
+  );
+  box-shadow:0 0 18px rgba(94,234,212,.16);
+}
+.card h3{margin:0 0 8px; color:var(--ink)}
 .muted{color:#c2d0e0}
 
 /* Titles */
@@ -98,8 +123,15 @@ a:hover{text-decoration:underline}
   box-shadow:0 0 18px rgba(166,255,77,.18);
 }
 
-.card.accent-blue{border-top:2px solid rgba(179,107,255,.55)}
-.card.accent-amber{border-top:2px solid rgba(166,255,77,.45)}
+.card.accent-blue{--card-accent: rgba(179,107,255,.85)}
+.card.accent-amber{--card-accent: rgba(166,255,77,.85)}
+
+/* Slightly punchier icon blocks inside cards */
+.iconpill .i{
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border-color:rgba(255,255,255,.14);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 14px 34px rgba(0,0,0,.30);
+}
 
 .pill-blue{border-color:rgba(179,107,255,.55); color:#d9c7ff}
 .pill-amber{border-color:rgba(166,255,77,.5); color:#d8ffb3}
@@ -133,6 +165,115 @@ nav{display:flex; align-items:center; justify-content:space-between; padding:14p
   .nav-links{gap:12px}
   .section{padding:46px 0}
 }
+
+/* ============== Homepage polish (UX-visible) ============== */
+
+/* Nav links should feel alive */
+header .nav-links a.muted{
+  color:rgba(226,236,249,.86);
+  font-weight:650;
+  padding:8px 10px;
+  border-radius:10px;
+  transition:color .18s ease, background .18s ease, border-color .18s ease;
+  border:1px solid transparent;
+}
+header .nav-links a.muted:hover{
+  text-decoration:none;
+  color:var(--ink);
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border-color:rgba(255,255,255,.12);
+}
+header .nav-links a.muted:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 4px rgba(94,234,212,.18);
+  border-color:rgba(94,234,212,.35);
+}
+
+/* Section separators to avoid a flat wall of cards */
+.section{
+  isolation:isolate;
+}
+.section::before{
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  top:0;
+  height:1px;
+  background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.14), rgba(255,255,255,0));
+  opacity:.55;
+}
+
+/* Subtle background panels for the sections you called out */
+#deliverables::after,
+#pricing-faq::after{
+  content:"";
+  position:absolute;
+  inset:-18px 0 -18px 0;
+  z-index:-1;
+  background:
+    radial-gradient(700px 320px at 12% 30%, rgba(166,255,77,.08), transparent 60%),
+    radial-gradient(760px 360px at 85% 60%, rgba(179,107,255,.08), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+  border-top:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+/* Make these sections feel more intentional */
+#deliverables .grid.cards,
+#pricing-faq .grid{
+  margin-top:14px;
+}
+
+/* Card hover: more tactile without going loud */
+.card{
+  transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(255,255,255,.16);
+  box-shadow:0 18px 40px rgba(0,0,0,.50);
+}
+
+/* Stronger headings for the weak sections */
+#deliverables .section-heading,
+#pricing-faq .section-heading{
+  font-size:30px;
+}
+
+/* Pricing FAQ: make it feel like an FAQ, not just more cards */
+#pricing-faq .card h3{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+}
+#pricing-faq .card h3::before{
+  content:"?";
+  display:inline-grid;
+  place-items:center;
+  width:24px;
+  height:24px;
+  border-radius:10px;
+  background:linear-gradient(135deg, rgba(94,234,212,.90), rgba(179,107,255,.75));
+  color:#041a17;
+  font-weight:900;
+  box-shadow:0 0 18px rgba(94,234,212,.18);
+}
+
+/* Deliverables: tiny sub-label for clarity */
+#deliverables .card h3{
+  letter-spacing:-0.01em;
+}
+
+/* Reduce topo intensity inside panels so text pops */
+#deliverables,
+#pricing-faq{
+  position:relative;
+}
+#deliverables .container,
+#pricing-faq .container{
+  position:relative;
+}
+
 
 
 /* === Brand logo (pulsing dot) === */
@@ -292,4 +433,137 @@ header .nav-links a.btn:hover{
 #index-cta .section-heading::after,
 .section.get-in-touch .section-heading::after {
   display: none !important;
+}
+
+
+/* =========================================================
+   UX/UI polish - section rhythm + premium accents (2026-02-04)
+   Visible upgrades for: Pricing FAQ, Deliverables, MapOps System
+   ========================================================= */
+
+/* Slightly richer panel tokens */
+:root{
+  --panel-1: rgba(179,107,255,.08);
+  --panel-2: rgba(166,255,77,.08);
+  --panel-3: rgba(94,234,212,.08);
+  --panel-border: rgba(255,255,255,.16);
+  --shadow-soft: 0 18px 50px rgba(0,0,0,.45);
+}
+
+/* Section panels (adds hierarchy without getting loud) */
+#pricing-faq,
+#deliverables,
+#mapops-system{
+  isolation:isolate;
+  padding:70px 0;
+}
+#pricing-faq::before,
+#deliverables::before,
+#mapops-system::before{
+  content:"";
+  position:absolute;
+  inset:14px 0;
+  z-index:0;
+  pointer-events:none;
+  border-top:1px solid rgba(255,255,255,.10);
+  border-bottom:1px solid rgba(255,255,255,.10);
+  background:
+    radial-gradient(900px 220px at 15% 20%, var(--panel-1), rgba(0,0,0,0) 60%),
+    radial-gradient(800px 220px at 85% 35%, var(--panel-2), rgba(0,0,0,0) 62%),
+    radial-gradient(900px 240px at 55% 95%, var(--panel-3), rgba(0,0,0,0) 60%);
+  opacity:1;
+}
+
+/* Make headings feel more "designed" in these sections */
+#pricing-faq .section-heading,
+#deliverables .section-heading,
+#mapops-system .section-heading{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:18px;
+}
+#pricing-faq .section-heading::after,
+#deliverables .section-heading::after,
+#mapops-system .section-heading::after{
+  content:"";
+  height:2px;
+  width:min(120px, 18vw);
+  border-radius:999px;
+  background:linear-gradient(90deg,
+    rgba(179,107,255,.85),
+    rgba(94,234,212,.85),
+    rgba(166,255,77,.75)
+  );
+  box-shadow:0 0 18px rgba(94,234,212,.25);
+}
+
+/* Cards: stronger depth + subtle glow on hover */
+#pricing-faq .card,
+#deliverables .card,
+#mapops-system .card{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+  transform:translateY(0);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+#pricing-faq .card:hover,
+#deliverables .card:hover,
+#mapops-system .card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(255,255,255,.22);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Pricing FAQ: add a small badge before the question title */
+#pricing-faq .card h3{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+#pricing-faq .card h3::before{
+  content:"?";
+  width:22px;
+  height:22px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:8px;
+  font-weight:800;
+  line-height:1;
+  color:rgba(0,0,0,.9);
+  background:linear-gradient(135deg, rgba(166,255,77,.95), rgba(94,234,212,.90));
+  box-shadow:0 0 16px rgba(166,255,77,.20);
+}
+
+/* MapOps System: add left accent rails so the 3 cards don't feel generic */
+#mapops-system .card{
+  padding-left:22px;
+}
+#mapops-system .card::before{
+  content:"";
+  position:absolute;
+  left:10px;
+  top:14px;
+  bottom:14px;
+  width:4px;
+  border-radius:999px;
+  background:linear-gradient(180deg, rgba(179,107,255,.95), rgba(94,234,212,.90), rgba(166,255,77,.80));
+  opacity:.85;
+}
+
+/* Deliverables: add a faint corner highlight so the section feels "shipped" */
+#deliverables .card::after{
+  content:"";
+  position:absolute;
+  right:-20px;
+  top:-20px;
+  width:120px;
+  height:120px;
+  background:radial-gradient(circle at 30% 30%, rgba(94,234,212,.22), rgba(0,0,0,0) 70%);
+  pointer-events:none;
+  opacity:.9;
 }
