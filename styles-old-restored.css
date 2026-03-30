@@ -1,0 +1,569 @@
+
+/* ============== Shared Brand Styles (non-destructive) ============== */
+/* Animated topo background using a seamless SVG tile; gentle drift */
+:root{
+  --bg:#0b0f13;
+  --ink:#f3f8ff;
+  --muted:#c2d0e0;
+  --brand:#5eead4;
+  --brand2:#2ae5c2;
+  /* Secondary accents (neon, used sparingly for rhythm) */
+  --accent-blue:#B36BFF;   /* neon purple */
+  --accent-amber:#A6FF4D;  /* neon lime */
+  --accent-grad:linear-gradient(90deg, rgba(179,107,255,0), rgba(179,107,255,.65), rgba(94,234,212,.65), rgba(166,255,77,.55), rgba(166,255,77,0));
+  --line:rgba(255,255,255,.12);
+}
+html,body{background-color:var(--bg); color:var(--ink);}
+/* Topo tile (approximate to provided reference, no watermark) */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'>  <defs>    <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>      <stop offset='0%' stop-color='%232ae5c2'/>      <stop offset='100%' stop-color='%235eead4'/>    </linearGradient>  </defs>  <g fill='none' stroke='url(%23g)' stroke-opacity='.12' stroke-width='2'>    <path d='M5,60 C45,30 85,90 125,60 C165,30 205,90 245,60 C285,30 315,90 315,90'/>    <path d='M0,160 C50,120 90,180 140,150 C190,120 230,180 280,150 C310,130 340,170 360,160' stroke-opacity='.10'/>    <path d='M-20,250 C40,210 120,290 180,240 C220,210 280,280 340,240' stroke-opacity='.08'/>    <path d='M40,5 C70,25 60,45 90,65 C120,85 110,105 140,125' stroke-opacity='.08'/>  </g></svg>");
+  background-size: 480px 480px;
+  background-repeat: repeat;
+  opacity:.7;           /* stronger topo visibility */
+  /* animation removed to keep topo static and visible */
+  pointer-events:none;
+  z-index:0;
+}
+@keyframes topoDrift{
+  0% { background-position: 0 0; }
+  50%{ background-position: -240px -120px; }
+  100%{ background-position: -480px -240px; }
+}
+/* Keep page content above the background texture */
+header, main, footer, .container, .grid, .card{ position:relative; z-index:1; }
+
+/* Small helper to avoid overlap for any fixed cameos if present */
+.pin-buddy{ z-index:1; }
+
+/* Respect existing typography/colors. This file is additive. */
+
+
+/* === Core UI (MapOps) === */
+:root{
+  --card:#111820;
+  --brand-ink:#042b26;
+  --radius:16px;
+}
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased;}
+a{color:var(--brand); text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Layout */
+.container{width:min(1180px,92vw); margin-inline:auto}
+.section{padding:60px 0; position:relative}
+.grid{display:grid; gap:24px}
+
+/* Cards */
+.card{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(120% 120% at 0% 0%, rgba(94,234,212,.08), transparent 55%),
+    var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:22px;
+  box-shadow:0 12px 28px rgba(0,0,0,.35);
+}
+.card::before{
+  content:"";
+  position:absolute;
+  left:14px;
+  right:14px;
+  top:12px;
+  height:3px;
+  border-radius:999px;
+  opacity:.9;
+  background:linear-gradient(90deg,
+    rgba(94,234,212,0),
+    var(--card-accent, rgba(94,234,212,.85)),
+    rgba(94,234,212,0)
+  );
+  box-shadow:0 0 18px rgba(94,234,212,.16);
+}
+.card h3{margin:0 0 8px; color:var(--ink)}
+.muted{color:#c2d0e0}
+
+/* Titles */
+.title{font-size:clamp(34px,5vw,56px); line-height:1.12; margin:0 0 10px;
+       background:linear-gradient(90deg,#30ffd1,#5eead4); -webkit-background-clip:text; -webkit-text-fill-color:transparent}
+.subtitle{font-size:clamp(18px,2.2vw,22px); color:#eaf6ff; opacity:.95; margin:0 0 14px}
+.section-heading{
+  color:var(--ink);
+  margin:0 0 12px;
+  font-size:26px;
+  letter-spacing:-0.01em;
+  display:inline-block;
+  position:relative;
+  padding-bottom:10px;
+}
+.section-heading::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:120px;
+  height:3px;
+  border-radius:999px;
+  background:linear-gradient(90deg, rgba(94,234,212,.0), rgba(94,234,212,.85), rgba(94,234,212,.0));
+  box-shadow:0 0 18px rgba(94,234,212,.25);
+}
+
+/* Accent helpers (more unified than changing the whole heading color) */
+.section-heading.blue::after{
+  background:linear-gradient(90deg, rgba(179,107,255,0), rgba(179,107,255,.85), rgba(94,234,212,.75), rgba(179,107,255,0));
+  box-shadow:0 0 18px rgba(179,107,255,.22);
+}
+.section-heading.amber::after{
+  background:linear-gradient(90deg, rgba(166,255,77,0), rgba(166,255,77,.88), rgba(94,234,212,.65), rgba(166,255,77,0));
+  box-shadow:0 0 18px rgba(166,255,77,.18);
+}
+
+.card.accent-blue{--card-accent: rgba(179,107,255,.85)}
+.card.accent-amber{--card-accent: rgba(166,255,77,.85)}
+
+/* Slightly punchier icon blocks inside cards */
+.iconpill .i{
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border-color:rgba(255,255,255,.14);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 14px 34px rgba(0,0,0,.30);
+}
+
+.pill-blue{border-color:rgba(179,107,255,.55); color:#d9c7ff}
+.pill-amber{border-color:rgba(166,255,77,.5); color:#d8ffb3}
+
+/* Number badge base for steps */
+.badge-num{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:999px;
+  background:linear-gradient(135deg,var(--brand2),var(--brand));color:#063b33;font-weight:900;margin-right:8px}
+
+.badge-num.blue{background:linear-gradient(135deg,var(--accent-blue), rgba(94,234,212,.95)); color:#130a2a}
+.badge-num.amber{background:linear-gradient(135deg,var(--accent-amber), rgba(94,234,212,.85)); color:#0b2200}
+
+/* Buttons */
+.btn{display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,var(--brand2),var(--brand));
+     color:var(--brand-ink); padding:10px 16px; border-radius:12px; font-weight:700; border:1px solid rgba(0,0,0,.08);
+     box-shadow:0 6px 18px rgba(42,229,194,.3); transition:transform .2s ease, background .3s ease; text-decoration:none}
+.btn:hover{transform:translateY(-2px); background:linear-gradient(135deg,#30ffd1,var(--brand))}
+.btn.ghost{background:transparent; color:var(--ink); border:1px solid var(--brand2)}
+.btn.ghost:hover{color:var(--brand2); border-color:var(--brand)}
+
+/* Utility grids used on How/Playbook */
+.cards{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+
+/* Header/footer spacing safety (borrowed vibes) */
+header{position:sticky; top:0; z-index:5; background:rgba(10,13,17,.8); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;color:var(--brand);font-size:28px}
+.nav-links{display:flex; gap:18px; flex-wrap:wrap}
+
+/* Responsive */
+@media (max-width:900px){
+  .nav-links{gap:12px}
+  .section{padding:46px 0}
+}
+
+/* ============== Homepage polish (UX-visible) ============== */
+
+/* Nav links should feel alive */
+header .nav-links a.muted{
+  color:rgba(226,236,249,.86);
+  font-weight:650;
+  padding:8px 10px;
+  border-radius:10px;
+  transition:color .18s ease, background .18s ease, border-color .18s ease;
+  border:1px solid transparent;
+}
+header .nav-links a.muted:hover{
+  text-decoration:none;
+  color:var(--ink);
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border-color:rgba(255,255,255,.12);
+}
+header .nav-links a.muted:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 4px rgba(94,234,212,.18);
+  border-color:rgba(94,234,212,.35);
+}
+
+/* Section separators to avoid a flat wall of cards */
+.section{
+  isolation:isolate;
+}
+.section::before{
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  top:0;
+  height:1px;
+  background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.14), rgba(255,255,255,0));
+  opacity:.55;
+}
+
+/* Subtle background panels for the sections you called out */
+#deliverables::after,
+#pricing-faq::after{
+  content:"";
+  position:absolute;
+  inset:-18px 0 -18px 0;
+  z-index:-1;
+  background:
+    radial-gradient(700px 320px at 12% 30%, rgba(166,255,77,.08), transparent 60%),
+    radial-gradient(760px 360px at 85% 60%, rgba(179,107,255,.08), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+  border-top:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+/* Make these sections feel more intentional */
+#deliverables .grid.cards,
+#pricing-faq .grid{
+  margin-top:14px;
+}
+
+/* Card hover: more tactile without going loud */
+.card{
+  transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(255,255,255,.16);
+  box-shadow:0 18px 40px rgba(0,0,0,.50);
+}
+
+/* Stronger headings for the weak sections */
+#deliverables .section-heading,
+#pricing-faq .section-heading{
+  font-size:30px;
+}
+
+/* Pricing FAQ: make it feel like an FAQ, not just more cards */
+#pricing-faq .card h3{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+}
+#pricing-faq .card h3::before{
+  content:"?";
+  display:inline-grid;
+  place-items:center;
+  width:24px;
+  height:24px;
+  border-radius:10px;
+  background:linear-gradient(135deg, rgba(94,234,212,.90), rgba(179,107,255,.75));
+  color:#041a17;
+  font-weight:900;
+  box-shadow:0 0 18px rgba(94,234,212,.18);
+}
+
+/* Deliverables: tiny sub-label for clarity */
+#deliverables .card h3{
+  letter-spacing:-0.01em;
+}
+
+/* Reduce topo intensity inside panels so text pops */
+#deliverables,
+#pricing-faq{
+  position:relative;
+}
+#deliverables .container,
+#pricing-faq .container{
+  position:relative;
+}
+
+
+
+/* === Brand logo (pulsing dot) === */
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;color:var(--brand);font-size:28px}
+.logo-dot{width:12px;height:12px;border-radius:50%;background:var(--brand2);
+  box-shadow:0 0 0 6px rgba(42,229,194,.22);animation:logoPulse 3.2s ease-in-out infinite}
+@keyframes logoPulse{
+  0%{box-shadow:0 0 0 6px rgba(42,229,194,.18);transform:scale(1)}
+  50%{box-shadow:0 0 0 10px rgba(42,229,194,.08);transform:scale(1.03)}
+  100%{box-shadow:0 0 0 6px rgba(42,229,194,.18);transform:scale(1)}
+}
+
+
+/* Pricing comparison table */
+.compare-table-wrapper{
+  margin-top:18px;
+  overflow-x:auto;
+}
+.compare-table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:620px;
+}
+.compare-table th,
+.compare-table td{
+  padding:10px 14px;
+  border-bottom:1px solid var(--line);
+  font-size:15px;
+}
+.compare-table th{
+  text-align:center;
+  color:var(--brand);
+  font-weight:600;
+}
+.compare-table td:first-child{
+  font-weight:500;
+  color:var(--muted);
+  white-space:nowrap;
+}
+
+/* ROI lines and badges */
+.roi{
+  margin:4px 0 6px;
+  font-size:13px;
+  color:#9fb0c6;
+}
+.badge-best,
+.badge-most,
+.badge-premium{
+  display:inline-block;
+  margin:6px 0 10px;
+  padding:3px 9px;
+  border-radius:999px;
+  font-size:12px;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  background:rgba(94,234,212,.10);
+  color:var(--brand);
+}
+
+/* Mobile tweaks */
+@media (max-width:720px){
+  .compare-table{
+    min-width:520px;
+    font-size:13px;
+  }
+}
+
+
+/* Header boost */
+
+.section-heading,
+h1, h2 {
+  background: linear-gradient(90deg, #6dffdf, #9d7bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 18px rgba(157,123,255,0.15);
+}
+
+
+
+/* ============== Header nav color boost ============== */
+header .nav-links a,
+header .nav-links a.muted{
+  color: rgba(243,248,255,.82);
+}
+header .nav-links a:hover{
+  color: var(--brand2);
+  text-shadow: 0 0 14px rgba(42,229,194,.28);
+}
+header .nav-links a:focus-visible{
+  outline: 2px solid rgba(166,255,77,.55);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+header .nav-links a[aria-current="page"]{
+  background: linear-gradient(90deg, var(--brand2), var(--accent-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 18px rgba(179,107,255,.22);
+}
+
+/* NAV LINK COLOR UPDATE */
+.nav-links a {
+  color: #9ef7e5;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #9d7bff;
+  text-shadow: 0 0 10px rgba(157,123,255,0.45);
+}
+
+.nav-links a[aria-current="page"] {
+  color: #6dffdf;
+  text-shadow: 0 0 12px rgba(109,255,223,0.6);
+}
+
+/* CTA BUTTON TEXT COLOR */
+.btn {
+  color: #042b24;
+}
+
+
+/* === NAV FINAL OVERRIDES (strong specificity) === */
+header .nav-links a.muted{
+  color:#9ef7e5 !important;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+header .nav-links a.muted:hover{
+  color:#9d7bff !important;
+  text-shadow: 0 0 10px rgba(157,123,255,0.45);
+}
+header .nav-links a[aria-current="page"]{
+  color:#6dffdf !important;
+  text-shadow: 0 0 12px rgba(109,255,223,0.55);
+}
+
+/* CTA text color */
+header .nav-links a.btn,
+header .nav-links a.btn:hover{
+  color:#042b24 !important;
+  text-shadow:none !important;
+}
+
+/* === Index CTA header fix === */
+/* Make 'Get In Touch' solid and calm, not gradient */
+#index-cta h2,
+#index-cta .section-heading,
+.section.get-in-touch h2 {
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  color: var(--ink) !important;
+  text-shadow: none !important;
+}
+
+#index-cta .section-heading::after,
+.section.get-in-touch .section-heading::after {
+  display: none !important;
+}
+
+
+/* =========================================================
+   UX/UI polish - section rhythm + premium accents (2026-02-04)
+   Visible upgrades for: Pricing FAQ, Deliverables, MapOps System
+   ========================================================= */
+
+/* Slightly richer panel tokens */
+:root{
+  --panel-1: rgba(179,107,255,.08);
+  --panel-2: rgba(166,255,77,.08);
+  --panel-3: rgba(94,234,212,.08);
+  --panel-border: rgba(255,255,255,.16);
+  --shadow-soft: 0 18px 50px rgba(0,0,0,.45);
+}
+
+/* Section panels (adds hierarchy without getting loud) */
+#pricing-faq,
+#deliverables,
+#mapops-system{
+  isolation:isolate;
+  padding:70px 0;
+}
+#pricing-faq::before,
+#deliverables::before,
+#mapops-system::before{
+  content:"";
+  position:absolute;
+  inset:14px 0;
+  z-index:0;
+  pointer-events:none;
+  border-top:1px solid rgba(255,255,255,.10);
+  border-bottom:1px solid rgba(255,255,255,.10);
+  background:
+    radial-gradient(900px 220px at 15% 20%, var(--panel-1), rgba(0,0,0,0) 60%),
+    radial-gradient(800px 220px at 85% 35%, var(--panel-2), rgba(0,0,0,0) 62%),
+    radial-gradient(900px 240px at 55% 95%, var(--panel-3), rgba(0,0,0,0) 60%);
+  opacity:1;
+}
+
+/* Make headings feel more "designed" in these sections */
+#pricing-faq .section-heading,
+#deliverables .section-heading,
+#mapops-system .section-heading{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:18px;
+}
+#pricing-faq .section-heading::after,
+#deliverables .section-heading::after,
+#mapops-system .section-heading::after{
+  content:"";
+  height:2px;
+  width:min(120px, 18vw);
+  border-radius:999px;
+  background:linear-gradient(90deg,
+    rgba(179,107,255,.85),
+    rgba(94,234,212,.85),
+    rgba(166,255,77,.75)
+  );
+  box-shadow:0 0 18px rgba(94,234,212,.25);
+}
+
+/* Cards: stronger depth + subtle glow on hover */
+#pricing-faq .card,
+#deliverables .card,
+#mapops-system .card{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+  transform:translateY(0);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+#pricing-faq .card:hover,
+#deliverables .card:hover,
+#mapops-system .card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(255,255,255,.22);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Pricing FAQ: add a small badge before the question title */
+#pricing-faq .card h3{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+#pricing-faq .card h3::before{
+  content:"?";
+  width:22px;
+  height:22px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:8px;
+  font-weight:800;
+  line-height:1;
+  color:rgba(0,0,0,.9);
+  background:linear-gradient(135deg, rgba(166,255,77,.95), rgba(94,234,212,.90));
+  box-shadow:0 0 16px rgba(166,255,77,.20);
+}
+
+/* MapOps System: add left accent rails so the 3 cards don't feel generic */
+#mapops-system .card{
+  padding-left:22px;
+}
+#mapops-system .card::before{
+  content:"";
+  position:absolute;
+  left:10px;
+  top:14px;
+  bottom:14px;
+  width:4px;
+  border-radius:999px;
+  background:linear-gradient(180deg, rgba(179,107,255,.95), rgba(94,234,212,.90), rgba(166,255,77,.80));
+  opacity:.85;
+}
+
+/* Deliverables: add a faint corner highlight so the section feels "shipped" */
+#deliverables .card::after{
+  content:"";
+  position:absolute;
+  right:-20px;
+  top:-20px;
+  width:120px;
+  height:120px;
+  background:radial-gradient(circle at 30% 30%, rgba(94,234,212,.22), rgba(0,0,0,0) 70%);
+  pointer-events:none;
+  opacity:.9;
+}
